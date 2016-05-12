@@ -24,7 +24,6 @@ public class LanguageCensor {
 	 */
 	private static Set<String> readDataFile() throws IOException {
 
-		// TODO
 		Set<String> swearWordList = new HashSet<String>(); // TODO: or initialize swearWordList as null and create a set object the first time we put a word in
 		FileReader in = null;
 		
@@ -35,7 +34,6 @@ public class LanguageCensor {
 		    
 		    
 		    while ((line = br.readLine()) != null) {
-		       //System.out.println(line);
 		       
 		    	if(!(line.isEmpty() || line.trim().equals("") || line.trim().equals("\n"))){
 		    		char firstChar = line.charAt(0);
