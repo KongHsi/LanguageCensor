@@ -13,6 +13,9 @@ public class LanguageCensor {
 		
 		Set<String> swearWords = readDataFile();
 		
+		for (String s : swearWords) {
+		    System.out.println(s);
+		}
 	}
 
 	/**
@@ -20,6 +23,7 @@ public class LanguageCensor {
 	 * @return a set of swear words
 	 */
 	private static Set<String> readDataFile() throws IOException {
+
 		// TODO
 		Set<String> swearWordList = new HashSet<String>(); // TODO: or initialize swearWordList as null and create a set object the first time we put a word in
 		FileReader in = null;
@@ -33,13 +37,16 @@ public class LanguageCensor {
 		    while ((line = br.readLine()) != null) {
 		       //System.out.println(line);
 		       
-		       char firstChar = line.charAt(0);
-		       
-		       // We ignore all the terms with multiple words, which are
-		       // marked by quotes around the term
-		       if(firstChar != '"'){
-		    	   System.out.println(line);
-		       }
+		    	if(!(line.isEmpty() || line.trim().equals("") || line.trim().equals("\n"))){
+		    		char firstChar = line.charAt(0);
+		    	
+			       
+			       // We ignore all the terms with multiple words, which are
+			       // marked by quotes around the term
+			       if(firstChar != '"'){
+			    	   swearWordList.add(line);
+			       }
+		    	}
 		    }
 		    br.close();
 		}
@@ -50,6 +57,6 @@ public class LanguageCensor {
 	      }
 		
 		
-		return null;
+		return swearWordList;
 	}
 }
