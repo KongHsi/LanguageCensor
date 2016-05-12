@@ -1,60 +1,56 @@
 package main;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
-import java.io.*;
-
 
 public class LanguageCensor {
-	public LanguageCensor(){
-		
-	}
+
 	public static void main(String args[]) throws IOException {
 		
+		String test = "this fuck is fucking shit";
 		Set<String> swearWords = readDataFile();
-		
-		for (String s : swearWords) {
-		    System.out.println(s);
-		}
+		System.out.println(swearWords.size());
+
+		languageCheck check = new languageCheck(swearWords);
+		System.out.println(check.checkIt(test));
+
 	}
 
 	/**
 	 * This method generates a list of swear words.
+	 * 
 	 * @return a set of swear words
 	 */
 	private static Set<String> readDataFile() throws IOException {
+		// TODO
+		Set<String> swearWordList = new HashSet<String>();
 
-		Set<String> swearWordList = new HashSet<String>(); // TODO: or initialize swearWordList as null and create a set object the first time we put a word in
 		FileReader in = null;
-		
 		try {
 			in = new FileReader("swear_word_list.txt");
 			BufferedReader br = new BufferedReader(in);
-		    String line;
-		    
-		    
-		    while ((line = br.readLine()) != null) {
-		       
-		    	if(!(line.isEmpty() || line.trim().equals("") || line.trim().equals("\n"))){
-		    		char firstChar = line.charAt(0);
-		    	
-			       
-			       // We ignore all the terms with multiple words, which are
-			       // marked by quotes around the term
-			       if(firstChar != '"'){
-			    	   swearWordList.add(line);
-			       }
-		    	}
-		    }
-		    br.close();
+			String line;
+
+			while ((line = br.readLine()) != null) {
+				// System.out.println(line);
+
+				char firstChar = line.charAt(0);
+
+				// We ignore all the terms with multiple words, which are
+				// marked by quotes around the term
+				if (firstChar != '"') {
+					swearWordList.add(line);
+				}
+			}
+			br.close();
+		} finally {
+			if (in != null) {
+				in.close();
+			}
 		}
-		finally {
-	         if (in != null) {
-	            in.close();
-	         }
-	      }
-		
-		
 		return swearWordList;
 	}
 }
