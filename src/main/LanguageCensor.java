@@ -11,8 +11,7 @@ public class LanguageCensor {
 	}
 	public static void main(String args[]) throws IOException {
 		
-		LanguageCensor censorText = new LanguageCensor();
-		Set<String> swearWords = censorText.readDataFile();
+		Set<String> swearWords = readDataFile();
 		
 	}
 
@@ -20,7 +19,7 @@ public class LanguageCensor {
 	 * This method generates a list of swear words.
 	 * @return a set of swear words
 	 */
-	private Set<String> readDataFile() throws IOException {
+	private static Set<String> readDataFile() throws IOException {
 		// TODO
 		Set<String> swearWordList = new HashSet<String>(); // TODO: or initialize swearWordList as null and create a set object the first time we put a word in
 		FileReader in = null;
