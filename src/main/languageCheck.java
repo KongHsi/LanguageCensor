@@ -6,13 +6,15 @@ public class languageCheck {
 
 	private Set<String> swearWords;
 	private String outString = new String();
-
+	
+	//The constructor takes a set of data.
 	public languageCheck(Set<String> swearWords) {
 		this.swearWords = swearWords;
 	}
 
+	//This method takes an uncensored string, and outputs a string with all 
+	//	bad words replaced.
 	public String checkIt(String input) {
-
 		String[] outArray = input.split(" ");
 
 		for (String i : outArray) {
